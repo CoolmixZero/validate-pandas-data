@@ -1,11 +1,22 @@
-## Validate pandas data
+# Validate pandas data with pandera
 
 Simple example of how to use Pandera package with Pandas to validate your data.
 
+1. The code defines a `OutputSchema` class that represents a schema for a retail products dataset. This class inherits from `pa.SchemaModel`, which is a class from the `pandera` library for defining data validation and cleaning schemas. The `OutputSchema` class specifies the expected data types and validation constraints for each column of the DataFrame.
+
+2. The `retrieve_retail_products` function is defined with the input parameter `path` which is of type `Path` and returns a pandas DataFrame with the schema defined by the `OutputSchema` class. The `pa.check_types` decorator is used to ensure that the input parameters and the return value of this function conform to the schema defined by `OutputSchema`. If any of the data validation checks fails, a `pa.errors.SchemaErrors` exception is raised.
+
+3. The `main` function calls the `retrieve_retail_products` function with the path of the input data file and prints the first five rows of the resulting DataFrame using the `head()` method. If any of the data validation checks fail, the exception message is printed instead.
+
+___
 `online_retail.csv`:
-| InvoiceNo | StockCode | Description | Quantity | InvoiceDate | UnitPrice | CustomerID | Country |
-|-----------|-----------|------------------------------------|----------|----------------------|-----------|------------|----------------|
-| 536365 | 85123A | WHITE HANGING HEART T-LIGHT HOLDER | 6 | 2010-12-01 08:26:00 | 2.55 | 17850.0 | United Kingdom |
+
+| InvoiceNo | StockCode | Description                            | Quantity | InvoiceDate          | UnitPrice | CustomerID | Country         |
+|-----------|-----------|----------------------------------------|----------|----------------------|-----------|------------|----------------|
+| 536365    | 85123A    | WHITE HANGING HEART T-LIGHT HOLDER      | 6        | 2010-12-01 08:26:00  | 2.55      | 17850.0    | United Kingdom |
+| 536365    | 71053     | WHITE METAL LANTERN                    | 6        | 2010-12-01 08:26:00  | 3.39      | 17850.0    | United Kingdom |
+| 536365    | 84406B    | CREAM CUPID HEARTS COAT HANGER          | 8        | 2010-12-01 08:26:00  | 2.75      | 17850.0    | United Kingdom |
+| 536365    | 84029G    | KNITTED UNION FLAG HOT WATER BOTTLE     | 6        | 2010-12-01 08:26:00  | 3.39      | 17850.0    | United Kingdom |
 
 ---
 
